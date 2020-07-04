@@ -28,24 +28,7 @@ class TicTacToeField {
     final FieldState[][] field;
 
     TicTacToeField(FieldState[][] field) {
-        this.field = new FieldState[3][3];
-        for (int row = 0; row < 3; row++) {
-            for (int col = 0; col < 3; col++) {
-                this.field[row][col] = field[row][col];
-            }
-        }
-    }
-
-    TicTacToeField(String str) {
-        field = new FieldState[3][3];
-        str = str.replace("\"", "");
-
-        for (int row = 0; row < 3; row++) {
-            for (int col = 0; col < 3; col++) {
-                field[row][col] =
-                    FieldState.get(str.charAt(((2 - row) * 3 + col)));
-            }
-        }
+        this.field = field;
     }
 
     boolean equalTo(TicTacToeField other) {
@@ -234,10 +217,13 @@ public class TicTacToeTest extends StageTest<Clue> {
             }
 
             String initial;
-            if (i % 2 == 0) {
-                initial = "start user easy\n";
-            } else {
-                initial = "start easy user\n";
+
+            switch (i % 4) {
+                case 0: initial = "start user easy\n"; break;
+                case 1: initial = "start easy user\n"; break;
+                case 2: initial = "start user medium\n"; break;
+                case 3: initial = "start medium user\n"; break;
+                default: continue;
             }
 
             fullGameInput = initial + fullGameInput + "exit";
@@ -250,6 +236,15 @@ public class TicTacToeTest extends StageTest<Clue> {
 
         tests.add(new TestCase<Clue>()
             .setInput("start easy easy\nexit"));
+
+        tests.add(new TestCase<Clue>()
+            .setInput("start medium medium\nexit"));
+
+        tests.add(new TestCase<Clue>()
+            .setInput("start medium easy\nexit"));
+
+        tests.add(new TestCase<Clue>()
+            .setInput("start easy medium\nexit"));
 
         tests.add(new TestCase<Clue>()
             .setInput("start user user\n" +
