@@ -1,4 +1,4 @@
-package tictactoe;
+package tictactoe.engine;
 
 import tictactoe.ai.Ai;
 
@@ -6,19 +6,19 @@ import static java.lang.Math.abs;
 import static java.util.Arrays.stream;
 
 public class Game {
-    private final TicTacToeBoard board;
+    private final Board board;
     private final Ai[] players;
-    private GameState state;
+    private State state;
     private int currentPlayer;
 
-    public Game(TicTacToeBoard board, Ai playerX, Ai playerO) {
+    public Game(Board board, Ai playerX, Ai playerO) {
         this.board = board;
         this.players = new Ai[]{playerX, playerO};
-        state = GameState.PLAYING;
+        state = State.PLAYING;
         currentPlayer = 0;
     }
 
-    public GameState getState() {
+    public State getState() {
         return state;
     }
 
@@ -34,15 +34,15 @@ public class Game {
                 .toArray();
 
         if (abs(moves[0] - moves[1]) > 1 || trips[0] + trips[1] > 1) {
-            state = GameState.IMPOSSIBLE;
+            state = State.IMPOSSIBLE;
         } else if (trips[0] == 1) {
-            state = GameState.X_WINS;
+            state = State.X_WINS;
         } else if (trips[1] == 1) {
-            state = GameState.O_WINS;
+            state = State.O_WINS;
         } else if (moves[0] + moves[1] == 9) {
-            state = GameState.DRAW;
+            state = State.DRAW;
         } else {
-            state = GameState.PLAYING;
+            state = State.PLAYING;
         }
     }
 

@@ -1,7 +1,7 @@
 package tictactoe.ai;
 
-import tictactoe.CellState;
-import tictactoe.TicTacToeBoard;
+import tictactoe.engine.Mark;
+import tictactoe.engine.Board;
 
 import java.util.Random;
 
@@ -10,8 +10,8 @@ import static java.util.stream.IntStream.range;
 public class Easy extends Ai {
     private final Random random;
 
-    public Easy(TicTacToeBoard board) {
-        super(board, CellState.O);
+    public Easy(Board board) {
+        super(board, Mark.O);
         this.random = new Random();
     }
 

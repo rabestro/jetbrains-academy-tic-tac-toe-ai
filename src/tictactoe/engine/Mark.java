@@ -1,6 +1,6 @@
-package tictactoe;
+package tictactoe.engine;
 
-public enum CellState {
+public enum Mark {
     EMPTY(' '), X('X'), O('O');
 
     private char symbol;
@@ -9,7 +9,7 @@ public enum CellState {
         return symbol;
     }
 
-    CellState(char symbol) {
+    Mark(char symbol) {
         this.symbol = symbol;
     }
 }

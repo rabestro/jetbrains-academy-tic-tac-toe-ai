@@ -1,6 +1,6 @@
-package tictactoe;
+package tictactoe.engine;
 
-public enum GameState {
+public enum State {
     PLAYING("Game not finished"),
     DRAW("Draw"),
     X_WINS("X wins"),
@@ -8,7 +8,7 @@ public enum GameState {
     IMPOSSIBLE("Impossible");
     final String message;
 
-    GameState(String message) {
+    State(String message) {
         this.message = message;
     }
 }

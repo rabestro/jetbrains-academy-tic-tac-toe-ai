@@ -1,18 +1,18 @@
 package tictactoe.ai;
 
-import tictactoe.CellState;
-import tictactoe.TicTacToeBoard;
+import tictactoe.engine.Mark;
+import tictactoe.engine.Board;
 
 public abstract class Ai {
-    protected final TicTacToeBoard board;
-    protected final CellState symbol;
+    protected final Board board;
+    protected final Mark symbol;
 
-    public Ai(TicTacToeBoard board, CellState symbol) {
+    public Ai(Board board, Mark symbol) {
         this.board = board;
         this.symbol = symbol;
     }
 
-    public CellState getSymbol() {
+    public Mark getSymbol() {
         return symbol;
     }
 

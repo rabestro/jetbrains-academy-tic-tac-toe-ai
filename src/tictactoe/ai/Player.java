@@ -1,15 +1,15 @@
 package tictactoe.ai;
 
-import tictactoe.CellState;
-import tictactoe.TicTacToeBoard;
+import tictactoe.engine.Mark;
+import tictactoe.engine.Board;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Player extends Ai {
 
-    public Player(TicTacToeBoard board) {
-        super(board, CellState.X);
+    public Player(Board board) {
+        super(board, Mark.X);
     }
 
     @Override
