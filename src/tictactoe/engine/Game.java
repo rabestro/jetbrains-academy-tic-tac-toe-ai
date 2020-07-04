@@ -1,9 +1,11 @@
 package tictactoe.engine;
 
 import tictactoe.ai.Ai;
+import tictactoe.ai.Player;
 
 import static java.lang.Math.abs;
 import static java.util.Arrays.stream;
+import static tictactoe.engine.State.PLAYING;
 
 public class Game {
     private final Board board;
@@ -11,9 +13,11 @@ public class Game {
     private State state;
     private int currentPlayer;
 
-    public Game(Board board, Ai playerX, Ai playerO) {
+    public Game(Board board, Player playerX, Player playerO) {
         this.board = board;
-        this.players = new Ai[]{playerX, playerO};
+        this.players = new Ai[]{
+                playerX.create(board, Mark.X),
+                playerO.create(board, Mark.O)};
         state = State.PLAYING;
         currentPlayer = 0;
     }
@@ -54,6 +58,15 @@ public class Game {
         final var player = players[currentPlayer];
         board.set(player.getMove(), player.getSymbol());
         currentPlayer = 1 - currentPlayer;
-        checkState();
+    }
+
+    public void start() {
+        do {
+            printBoard();
+            nextMove();
+            checkState();
+        } while (state == PLAYING);
+        printBoard();
+        System.out.println(state.getMessage());
     }
 }

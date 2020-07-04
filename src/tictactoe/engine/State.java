@@ -11,4 +11,8 @@ public enum State {
     State(String message) {
         this.message = message;
     }
+
+    String getMessage() {
+        return message;
+    }
 }
