@@ -28,12 +28,12 @@ public class Game {
 
     private void checkState() {
         final var moves = stream(players)
-                .map(Ai::getSymbol)
+                .map(Ai::getMark)
                 .mapToInt(board::getCellsCount)
                 .toArray();
 
         final var trips = stream(players)
-                .map(Ai::getSymbol)
+                .map(Ai::getMark)
                 .mapToInt(board::getTripsCount)
                 .toArray();
 
@@ -56,7 +56,7 @@ public class Game {
 
     public void nextMove() {
         final var player = players[currentPlayer];
-        board.set(player.getMove(), player.getSymbol());
+        board.set(player.getMove(), player.getMark());
         currentPlayer = 1 - currentPlayer;
     }
 

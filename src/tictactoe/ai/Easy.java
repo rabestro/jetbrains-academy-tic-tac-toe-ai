@@ -18,7 +18,6 @@ public class Easy extends Ai {
     @Override
     public int getMove() {
         System.out.println("Making move level \"easy\"");
-        final var freeCells = range(0, 9).filter(board::isFree).toArray();
-        return freeCells[random.nextInt(freeCells.length)];
+        return board.getRandomFree();
     }
 }
