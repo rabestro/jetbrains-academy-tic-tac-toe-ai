@@ -1,20 +1,28 @@
 package tictactoe;
 
+import tictactoe.ai.Ai;
+import tictactoe.ai.Easy;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class GameUI {
+public final class GameUI {
     private TicTacToeBoard board;
     private Scanner scanner;
+    private Ai ai;
 
     public GameUI(Scanner scanner) {
         this.scanner = scanner;
+        ai = new Easy();
     }
 
     void run() {
         board = new TicTacToeBoard();
         System.out.println(board);
         askUser();
+        System.out.println(board);
+        System.out.println("Making move level \"easy\"");
+        board.set(ai.getMove(board), CellState.COMPUTER);
         System.out.println(board);
     }
 

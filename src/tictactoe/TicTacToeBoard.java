@@ -2,31 +2,31 @@ package tictactoe;
 
 import java.util.Arrays;
 
-public class TicTacToeBoard {
+public final class TicTacToeBoard {
     private static final int SIZE = 3;
     private CellState[] board = new CellState[9];
 
     public TicTacToeBoard() {
-        Arrays.fill(board, CellState.EMPTY);
+        clean();
     }
 
     public void clean() {
         Arrays.fill(board, CellState.EMPTY);
     }
 
-    void set(int index, CellState state) {
+    public void set(int index, CellState state) {
         board[index] = state;
     }
 
-    void set(int x, int y, CellState state) {
+    public void set(int x, int y, CellState state) {
         board[8 + x - 3 * y] = state;
     }
 
-    boolean isFree(int index) {
+    public boolean isFree(int index) {
         return board[index] == CellState.EMPTY;
     }
 
-    boolean isFree(int x, int y) {
+    public boolean isFree(int x, int y) {
         if (x < 1 || x > 3 || y < 1 || y > 3) {
             throw new IndexOutOfBoundsException();
         }
