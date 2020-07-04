@@ -10,8 +10,8 @@ import static java.util.stream.IntStream.range;
 public class Easy extends Ai {
     private final Random random;
 
-    public Easy(Board board) {
-        super(board, Mark.O);
+    public Easy(Board board, Mark mark) {
+        super(board, mark);
         this.random = new Random();
     }
 

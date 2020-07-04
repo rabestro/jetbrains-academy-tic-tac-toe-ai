@@ -38,6 +38,8 @@ class TicTacToeField {
 
     TicTacToeField(String str) {
         field = new FieldState[3][3];
+        str = str.replace("\"", "");
+
         for (int row = 0; row < 3; row++) {
             for (int col = 0; col < 3; col++) {
                 field[row][col] =
@@ -164,8 +166,10 @@ class TicTacToeField {
                 candidateField += line + "\n";
             }
         }
+
         return fields;
     }
+
 }
 
 
@@ -178,7 +182,7 @@ class Clue {
 }
 
 public class TicTacToeTest extends StageTest<Clue> {
-    public TicTacToeTest() {
+    public TicTacToeTest() throws Exception {
         super(Main.class);
     }
 
@@ -229,12 +233,32 @@ public class TicTacToeTest extends StageTest<Clue> {
                 fullGameInput += fullMoveInput;
             }
 
+            String initial;
+            if (i % 2 == 0) {
+                initial = "start user easy\n";
+            } else {
+                initial = "start easy user\n";
+            }
+
+            fullGameInput = initial + fullGameInput + "exit";
+
             tests.add(new TestCase<Clue>()
-                .setInput(fullGameInput)
-                .setAttach(new Clue(x, y)));
+                .setInput(fullGameInput));
 
             i++;
         }
+
+        tests.add(new TestCase<Clue>()
+            .setInput("start easy easy\nexit"));
+
+        tests.add(new TestCase<Clue>()
+            .setInput("start user user\n" +
+                "1 1\n" +
+                "2 2\n" +
+                "1 2\n" +
+                "2 1\n" +
+                "1 3\n" +
+                "exit"));
 
         return tests;
     }
@@ -258,11 +282,6 @@ public class TicTacToeTest extends StageTest<Clue> {
                         "other one is not a continuation " +
                         "of the other (they differ more than in two places).");
             }
-        }
-
-        if (!reply.contains("Making move level \"easy\"")) {
-            return new CheckResult(false,
-                "No \"Making move level \"easy\"\" line in output");
         }
 
         return CheckResult.correct();
