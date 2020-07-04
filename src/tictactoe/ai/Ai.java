@@ -7,9 +7,9 @@ public abstract class Ai {
     protected final Board board;
     protected final Mark symbol;
 
-    public Ai(Board board, Mark symbol) {
+    public Ai(Board board, Mark mark) {
         this.board = board;
-        this.symbol = symbol;
+        this.symbol = mark;
     }
 
     public Mark getSymbol() {

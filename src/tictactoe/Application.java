@@ -1,6 +1,7 @@
 package tictactoe;
 
 import tictactoe.ai.Easy;
+import tictactoe.ai.Medium;
 import tictactoe.ai.Player;
 import tictactoe.ai.User;
 import tictactoe.engine.Game;
@@ -11,9 +12,9 @@ import java.util.Scanner;
 import java.util.regex.Pattern;
 
 public final class Application {
-    private static final Pattern PATTERN_COMMAND = Pattern.compile("(exit|start( easy| user){2})");
+    private static final Pattern PATTERN_COMMAND = Pattern.compile("(exit|start( easy| medium| user){2})");
     private static final Map<String, Player> players =
-            Map.of("easy", Easy::new, "user", User::new);
+            Map.of("easy", Easy::new, "medium", Medium::new,"user", User::new);
 
     void run() {
         do {
