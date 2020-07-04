@@ -1,6 +1,6 @@
 package tictactoe;
 
-enum GameState {
+public enum GameState {
     PLAYING("Game not finished"),
     DRAW("Draw"),
     X_WINS("X wins"),
