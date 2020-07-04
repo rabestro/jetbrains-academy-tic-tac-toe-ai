@@ -22,7 +22,7 @@ public class Player extends Ai {
             try {
                 x = scanner.nextInt();
                 y = scanner.nextInt();
-                if (notCorrectCoordinates(x, y)) {
+                if (x < 1 || x > 3 || y < 1 || y > 3) {
                     System.out.println("Coordinates should be from 1 to 3");
                 } else if (!board.isFree(x, y)) {
                     System.out.println("This cell is occupied! Choose another one!");
@@ -34,11 +34,8 @@ public class Player extends Ai {
             }
         } while (true);
 
+//        scanner.close();
         return 8 + x - 3 * y;
-    }
-
-    private boolean notCorrectCoordinates(int x, int y) {
-        return x < 1 || x > 3 || y < 1 || y > 3;
     }
 
 }

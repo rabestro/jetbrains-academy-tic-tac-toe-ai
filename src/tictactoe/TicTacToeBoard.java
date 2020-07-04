@@ -1,6 +1,7 @@
 package tictactoe;
 
 import java.util.Arrays;
+import java.util.stream.Stream;
 
 public class TicTacToeBoard {
     private static final int SIZE = 3;
@@ -31,6 +32,10 @@ public class TicTacToeBoard {
             throw new IndexOutOfBoundsException();
         }
         return isFree(x - 3 * y + 8);
+    }
+
+    public int getCellsCount(CellState state) {
+        return (int) Arrays.stream(board).filter(state::equals).count();
     }
 
     @Override
