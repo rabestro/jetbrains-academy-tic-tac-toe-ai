@@ -2,7 +2,7 @@ package tictactoe;
 
 import java.util.Arrays;
 
-public final class TicTacToeBoard {
+public class TicTacToeBoard {
     private static final int SIZE = 3;
     private CellState[] board = new CellState[9];
 

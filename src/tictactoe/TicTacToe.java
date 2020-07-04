@@ -33,7 +33,7 @@ class TicTacToe {
     }
 
     public boolean isOver() {
-        return state != GameState.GAME;
+        return state != GameState.PLAYING;
     }
 
     public void askField() {
@@ -80,9 +80,10 @@ class TicTacToe {
         } else if (count[0] + count[1] == 9) {
             state = GameState.DRAW;
         } else {
-            state = GameState.GAME;
+            state = GameState.PLAYING;
         }
     }
+
 
     public void printBoard() {
         System.out.println("---------");

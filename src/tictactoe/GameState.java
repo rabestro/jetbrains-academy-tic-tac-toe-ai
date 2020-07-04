@@ -1,7 +1,7 @@
 package tictactoe;
 
 enum GameState {
-    GAME("Game not finished"),
+    PLAYING("Game not finished"),
     DRAW("Draw"),
     X_WINS("X wins"),
     O_WINS("O wins"),

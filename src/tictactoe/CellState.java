@@ -1,7 +1,7 @@
 package tictactoe;
 
 public enum CellState {
-    EMPTY(' '), PLAYER('X'), COMPUTER('O');
+    EMPTY(' '), X('X'), O('O');
 
     char symbol;
 

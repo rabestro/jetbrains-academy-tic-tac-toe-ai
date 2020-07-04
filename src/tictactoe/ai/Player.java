@@ -1,52 +1,44 @@
-package tictactoe;
+package tictactoe.ai;
 
-import tictactoe.ai.Ai;
-import tictactoe.ai.Easy;
+import tictactoe.CellState;
+import tictactoe.TicTacToeBoard;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public final class GameUI {
-    private TicTacToeBoard board;
-    private Scanner scanner;
-    private Ai ai;
+public class Player extends Ai {
 
-    public GameUI(Scanner scanner) {
-        this.scanner = scanner;
-        ai = new Easy();
+    public Player(TicTacToeBoard board) {
+        super(board, CellState.X);
     }
 
-    void run() {
-        board = new TicTacToeBoard();
-        System.out.println(board);
-        askUser();
-        System.out.println(board);
-        System.out.println("Making move level \"easy\"");
-        board.set(ai.getMove(board), CellState.COMPUTER);
-        System.out.println(board);
-    }
+    @Override
+    public int getMove() {
+        final var scanner = new Scanner(System.in);
+        int x, y;
 
-    public void askUser() {
         do {
             System.out.print("Enter the coordinates: ");
             try {
-                final int x = scanner.nextInt();
-                final int y = scanner.nextInt();
+                x = scanner.nextInt();
+                y = scanner.nextInt();
                 if (notCorrectCoordinates(x, y)) {
                     System.out.println("Coordinates should be from 1 to 3");
                 } else if (!board.isFree(x, y)) {
                     System.out.println("This cell is occupied! Choose another one!");
                 } else {
-                    board.set(x, y, CellState.PLAYER);
                     break;
                 }
             } catch (InputMismatchException e) {
                 System.out.println("You should enter numbers!");
             }
         } while (true);
+
+        return 8 + x - 3 * y;
     }
 
     private boolean notCorrectCoordinates(int x, int y) {
         return x < 1 || x > 3 || y < 1 || y > 3;
     }
+
 }
