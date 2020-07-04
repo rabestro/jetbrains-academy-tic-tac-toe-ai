@@ -4,7 +4,6 @@ import java.util.Arrays;
 
 public class TicTacToeBoard {
     private static final int SIZE = 3;
-
     private CellState[] board = new CellState[9];
 
     public TicTacToeBoard() {
@@ -19,6 +18,14 @@ public class TicTacToeBoard {
         board[index] = state;
     }
 
+    void set(int x, int y, CellState state) {
+        board[8 + x - 3 * y] = state;
+    }
+
+    boolean isFree(int index) {
+        return board[index] == CellState.EMPTY;
+    }
+
     boolean isFree(int x, int y) {
         if (x < 1 || x > 3 || y < 1 || y > 3) {
             throw new IndexOutOfBoundsException();
@@ -26,14 +33,10 @@ public class TicTacToeBoard {
         return isFree(x - 3 * y + 8);
     }
 
-    boolean isFree(int index) {
-        return board[index] == CellState.EMPTY;
-    }
-
     @Override
     public String toString() {
         return String.format(
-                "---------%n" + "| %c %c %c |%n".repeat(3) + "---------",
+                "---------%n| %c %c %c |%n| %c %c %c |%n| %c %c %c |%n---------",
                 Arrays.stream(board).map(e -> e.symbol).toArray());
     }
 }
