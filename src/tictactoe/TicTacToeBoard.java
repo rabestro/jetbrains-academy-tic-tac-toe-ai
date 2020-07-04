@@ -55,6 +55,6 @@ public class TicTacToeBoard {
     public String toString() {
         return String.format(
                 "---------%n| %c %c %c |%n| %c %c %c |%n| %c %c %c |%n---------",
-                stream(board).map(e -> e.symbol).toArray());
+                stream(board).map(CellState::getSymbol).toArray());
     }
 }
