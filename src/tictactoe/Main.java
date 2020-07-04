@@ -2,14 +2,8 @@ package tictactoe;
 
 public class Main {
     public static void main(String[] args) {
-        TicTacToe game = new TicTacToe();
+        new GameUI().run();
 
-        game.askField();
-        game.printBoard();
-        game.askUser();
-        game.checkState();
-        game.printBoard();
-        game.printMessage();
     }
 }
 
