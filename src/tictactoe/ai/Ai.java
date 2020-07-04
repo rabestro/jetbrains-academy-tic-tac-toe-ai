@@ -5,15 +5,15 @@ import tictactoe.engine.Board;
 
 public abstract class Ai {
     protected final Board board;
-    protected final Mark symbol;
+    protected final Mark mark;
 
     public Ai(Board board, Mark mark) {
         this.board = board;
-        this.symbol = mark;
+        this.mark = mark;
     }
 
-    public Mark getSymbol() {
-        return symbol;
+    public Mark getMark() {
+        return mark;
     }
 
     public abstract int getMove();
