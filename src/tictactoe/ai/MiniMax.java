@@ -10,10 +10,18 @@ public class MiniMax extends Ai {
 
     @Override
     public int getMove() {
+
         return 0;
     }
 
     private int evaluate() {
-        return 0;
+        switch (board.getState()) {
+            case X_WINS:
+                return 10;
+            case O_WINS:
+                return -10;
+            default:
+                return 0;
+        }
     }
 }
