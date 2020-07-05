@@ -2,15 +2,11 @@ package tictactoe.engine;
 
 import tictactoe.ai.Ai;
 import tictactoe.ai.Player;
-
-import static java.lang.Math.abs;
-import static java.util.Arrays.stream;
 import static tictactoe.engine.State.PLAYING;
 
 public class Game {
     private final Board board;
     private final Ai[] players;
-    private State state;
     private int currentPlayer;
 
     public Game(Board board, Player playerX, Player playerO) {
@@ -18,55 +14,22 @@ public class Game {
         this.players = new Ai[]{
                 playerX.create(board, Mark.X),
                 playerO.create(board, Mark.O)};
-        state = State.PLAYING;
         currentPlayer = 0;
     }
 
-    public State getState() {
-        return state;
-    }
+    public void start() {
+        do {
+            System.out.println(board);
+            nextMove();
+        } while (board.getState() == PLAYING);
 
-    private void checkState() {
-        final var moves = stream(players)
-                .map(Ai::getMark)
-                .mapToInt(board::getCellsCount)
-                .toArray();
-
-        final var trips = stream(players)
-                .map(Ai::getMark)
-                .mapToInt(board::getTripsCount)
-                .toArray();
-
-        if (abs(moves[0] - moves[1]) > 1 || trips[0] + trips[1] > 1) {
-            state = State.IMPOSSIBLE;
-        } else if (trips[0] == 1) {
-            state = State.X_WINS;
-        } else if (trips[1] == 1) {
-            state = State.O_WINS;
-        } else if (moves[0] + moves[1] == 9) {
-            state = State.DRAW;
-        } else {
-            state = State.PLAYING;
-        }
-    }
-
-    public void printBoard() {
         System.out.println(board);
+        System.out.println(board.getState().getMessage());
     }
 
     public void nextMove() {
         final var player = players[currentPlayer];
         board.set(player.getMove(), player.getMark());
         currentPlayer = 1 - currentPlayer;
-    }
-
-    public void start() {
-        do {
-            printBoard();
-            nextMove();
-            checkState();
-        } while (state == PLAYING);
-        printBoard();
-        System.out.println(state.getMessage());
     }
 }

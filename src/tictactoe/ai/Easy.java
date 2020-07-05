@@ -5,8 +5,6 @@ import tictactoe.engine.Board;
 
 import java.util.Random;
 
-import static java.util.stream.IntStream.range;
-
 public class Easy extends Ai {
     private final Random random;
 
@@ -17,7 +15,7 @@ public class Easy extends Ai {
 
     @Override
     public int getMove() {
-        System.out.println("Making move level \"easy\"");
+        System.out.println("Making move level Easy");
         return board.getRandomFree();
     }
 }

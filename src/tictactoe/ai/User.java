@@ -24,7 +24,7 @@ public class User extends Ai {
                 y = scanner.nextInt();
                 if (x < 1 || x > 3 || y < 1 || y > 3) {
                     System.out.println("Coordinates should be from 1 to 3");
-                } else if (!board.isFree(x, y)) {
+                } else if (!board.isEmpty(x, y)) {
                     System.out.println("This cell is occupied! Choose another one!");
                 } else {
                     break;
