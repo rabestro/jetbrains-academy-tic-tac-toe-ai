@@ -12,12 +12,12 @@ public class Medium extends Ai {
 
     @Override
     public int getMove() {
+        System.out.println("Making move level Medium");
         final var opponent = mark == Mark.X ? Mark.O : Mark.X;
-        System.out.println("Making move level \"medium\"");
 
         return board.getTwoMarkTrips(getMark())
                 .or(() -> board.getTwoMarkTrips(opponent))
-                .map(line -> Arrays.stream(line).filter(board::isFree).findAny().getAsInt())
+                .map(line -> Arrays.stream(line).filter(board::isEmpty).findAny().getAsInt())
                 .orElseGet(board::getRandomFree);
     }
 }

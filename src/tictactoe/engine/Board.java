@@ -7,6 +7,7 @@ import java.util.function.Predicate;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
+import static java.lang.Math.abs;
 import static java.util.Arrays.stream;
 import static java.util.stream.IntStream.range;
 
@@ -35,15 +36,15 @@ public class Board {
         board[8 + x - 3 * y] = state;
     }
 
-    public boolean isFree(int index) {
+    public boolean isEmpty(int index) {
         return board[index] == Mark.EMPTY;
     }
 
-    public boolean isFree(int x, int y) {
+    public boolean isEmpty(int x, int y) {
         if (x < 1 || x > 3 || y < 1 || y > 3) {
             throw new IndexOutOfBoundsException();
         }
-        return isFree(x - 3 * y + 8);
+        return isEmpty(x - 3 * y + 8);
     }
 
     public IntStream getCells(Mark mark) {
@@ -63,8 +64,12 @@ public class Board {
     }
 
     public int getRandomFree() {
-        final var freeCells = range(0, 9).filter(this::isFree).toArray();
+        final var freeCells = range(0, 9).filter(this::isEmpty).toArray();
         return freeCells[random.nextInt(freeCells.length)];
+    }
+
+    public int[] getFreeCells() {
+        return range(0, 9).filter(this::isEmpty).toArray();
     }
 
     public int getCellsCount(Mark symbol) {
@@ -72,11 +77,25 @@ public class Board {
     }
 
     public int getTripsCount(Mark mark) {
-        Predicate<int[]> threeInRow = line -> stream(line)
-                .filter(i -> board[i] == mark)
-                .count() == 3;
-
+        Predicate<int[]> threeInRow = line -> stream(line).filter(i -> board[i] == mark).count() == 3;
         return (int) stream(TRIPS).filter(threeInRow).count();
+    }
+
+    public State getState() {
+        final var marks = Stream.of(Mark.X, Mark.O).mapToInt(this::getCellsCount).toArray();
+        final var trips = Stream.of(Mark.X, Mark.O).mapToInt(this::getTripsCount).toArray();
+
+        if (abs(marks[0] - marks[1]) > 1 || trips[0] + trips[1] > 1) {
+            return State.IMPOSSIBLE;
+        } else if (trips[0] == 1) {
+            return State.X_WINS;
+        } else if (trips[1] == 1) {
+            return State.O_WINS;
+        } else if (marks[0] + marks[1] == 9) {
+            return State.DRAW;
+        } else {
+            return State.PLAYING;
+        }
     }
 
     @Override
