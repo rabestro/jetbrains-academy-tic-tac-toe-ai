@@ -7,6 +7,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class User extends Ai {
+    final Scanner scanner = new Scanner(System.in);
 
     public User(Board board, Mark mark) {
         super(board, mark);
@@ -14,7 +15,6 @@ public class User extends Ai {
 
     @Override
     public int getMove() {
-        final var scanner = new Scanner(System.in);
         int x, y;
 
         do {
@@ -34,7 +34,6 @@ public class User extends Ai {
             }
         } while (true);
 
-        scanner.close();
         return 8 + x - 3 * y;
     }
 
