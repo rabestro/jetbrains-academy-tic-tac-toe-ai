@@ -68,6 +68,10 @@ public class Board {
         return freeCells[random.nextInt(freeCells.length)];
     }
 
+    public int[] getFreeCells() {
+        return range(0, 9).filter(this::isEmpty).toArray();
+    }
+
     public int getCellsCount(Mark symbol) {
         return (int) stream(board).filter(symbol::equals).count();
     }
