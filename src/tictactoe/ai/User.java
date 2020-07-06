@@ -34,7 +34,7 @@ public class User extends Ai {
             }
         } while (true);
 
-//        scanner.close();
+        scanner.close();
         return 8 + x - 3 * y;
     }
 
