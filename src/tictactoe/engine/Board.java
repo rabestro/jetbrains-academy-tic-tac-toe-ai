@@ -12,7 +12,6 @@ import static java.util.Arrays.stream;
 import static java.util.stream.IntStream.range;
 
 public class Board {
-    private static final int SIZE = 3;
     private static final int[][] TRIPS = {{0, 1, 2}, {3, 4, 5}, {6, 7, 8},
             {0, 4, 8}, {2, 4, 6}, {0, 3, 6}, {1, 4, 7}, {2, 5, 8}};
 
@@ -85,7 +84,7 @@ public class Board {
         final var marks = Stream.of(Mark.X, Mark.O).mapToInt(this::getCellsCount).toArray();
         final var trips = Stream.of(Mark.X, Mark.O).mapToInt(this::getTripsCount).toArray();
 
-        if (abs(marks[0] - marks[1]) > 1 || trips[0] + trips[1] > 1) {
+        if (abs(marks[0] - marks[1]) > 1 || trips[0] > 0 && trips[1] > 0) {
             return State.IMPOSSIBLE;
         } else if (trips[0] == 1) {
             return State.X_WINS;
