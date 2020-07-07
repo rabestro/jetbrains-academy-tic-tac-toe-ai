@@ -8,7 +8,7 @@ After finishing this project, you'll get to know a lot about planning and develo
 
 ## What you’ll do and what you’ll learn
 
-- Stage 1/5: [Initial setup](https://hyperskill.org/projects/81/stages/447/implement)
+- ### Stage 1/5: [Initial setup](https://hyperskill.org/projects/81/stages/447/implement)
 Learn how to work with the field and the coordinates.
 
 - Stage 2/5: Easy does it
