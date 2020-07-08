@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.Optional;
 import java.util.Random;
 import java.util.function.Predicate;
-import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import static java.lang.Math.abs;
@@ -12,18 +11,13 @@ import static java.util.Arrays.stream;
 import static java.util.stream.IntStream.range;
 
 public class Board {
+    private static final Random random = new Random();
     private static final int[][] TRIPS = {{0, 1, 2}, {3, 4, 5}, {6, 7, 8},
             {0, 4, 8}, {2, 4, 6}, {0, 3, 6}, {1, 4, 7}, {2, 5, 8}};
 
-    private final Random random = new Random();
-
-    private Mark[] board = new Mark[9];
+    private final Mark[] board = new Mark[9];
 
     public Board() {
-        clean();
-    }
-
-    public void clean() {
         Arrays.fill(board, Mark.EMPTY);
     }
 
@@ -55,7 +49,7 @@ public class Board {
     }
 
     public int getRandomFree() {
-        final var freeCells = range(0, 9).filter(this::isEmpty).toArray();
+        final var freeCells = getFreeCells();
         return freeCells[random.nextInt(freeCells.length)];
     }
 
@@ -78,9 +72,9 @@ public class Board {
 
         if (abs(marks[0] - marks[1]) > 1 || trips[0] > 0 && trips[1] > 0) {
             return State.IMPOSSIBLE;
-        } else if (trips[0] == 1) {
+        } else if (trips[0] > 0) {
             return State.X_WINS;
-        } else if (trips[1] == 1) {
+        } else if (trips[1] > 0) {
             return State.O_WINS;
         } else if (marks[0] + marks[1] == 9) {
             return State.DRAW;
