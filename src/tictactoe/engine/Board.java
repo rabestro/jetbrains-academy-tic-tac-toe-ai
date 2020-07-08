@@ -31,8 +31,8 @@ public class Board {
         board[index] = state;
     }
 
-    public void set(int x, int y, Mark state) {
-        board[8 + x - 3 * y] = state;
+    public boolean isEmpty() {
+        return stream(board).allMatch(Mark.EMPTY::equals);
     }
 
     public boolean isEmpty(int index) {
@@ -46,16 +46,8 @@ public class Board {
         return isEmpty(x - 3 * y + 8);
     }
 
-    public IntStream getCells(Mark mark) {
-        return IntStream.range(0, 9).filter(i -> board[i] == mark);
-    }
-
-    public Stream<int[]> getTrips(int i) {
-        return Arrays.stream(TRIPS).filter(line -> line[0] == i || line[1] == i || line[2] == i);
-    }
-
     public Optional<int[]> getTwoMarkTrips(Mark mark) {
-        return Arrays.stream(TRIPS).filter(i ->
+        return stream(TRIPS).filter(i ->
                 board[i[0]] == Mark.EMPTY && board[i[1]] == mark && board[i[2]] == mark
                         || board[i[1]] == Mark.EMPTY && board[i[0]] == mark && board[i[2]] == mark
                         || board[i[2]] == Mark.EMPTY && board[i[1]] == mark && board[i[0]] == mark)

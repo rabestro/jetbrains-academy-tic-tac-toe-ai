@@ -14,6 +14,9 @@ public class Hard extends Ai {
     @Override
     public int getMove() {
         System.out.println("Making move level Hard");
+        if (board.isEmpty()) {
+            return board.getRandomFree();
+        }
         log.fine("Thinking MiniMax");
         return minimax(0, mark == Mark.X);
     }
