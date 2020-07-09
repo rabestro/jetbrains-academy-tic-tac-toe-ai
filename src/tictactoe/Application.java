@@ -8,12 +8,12 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
-public final class Application {
+public final class Application implements Runnable {
     private static final Pattern PATTERN_COMMAND = Pattern.compile("(exit|start( easy| medium| hard| user){2})");
     private static final Map<String, Player> players = Map.of("user", User::new,
             "easy", Easy::new, "medium", Medium::new, "hard", Hard::new);
 
-    void run() {
+    public void run() {
         do {
             final var args = readCommand().split(" ");
 
