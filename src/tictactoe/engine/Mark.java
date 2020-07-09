@@ -3,13 +3,13 @@ package tictactoe.engine;
 public enum Mark {
     EMPTY(' '), X('X'), O('O');
 
-    private char symbol;
+    private char mark;
 
-    public char getSymbol() {
-        return symbol;
+    public char getMark() {
+        return mark;
     }
 
-    Mark(char symbol) {
-        this.symbol = symbol;
+    Mark(char mark) {
+        this.mark = mark;
     }
 }

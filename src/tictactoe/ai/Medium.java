@@ -15,8 +15,8 @@ public final class Medium extends Ai {
         System.out.println("Making move level Medium");
         final var opponent = mark == Mark.X ? Mark.O : Mark.X;
 
-        return board.getTwoMarkTrips(getMark())
-                .or(() -> board.getTwoMarkTrips(opponent))
+        return board.getLineWithTwoMarks(getMark())
+                .or(() -> board.getLineWithTwoMarks(opponent))
                 .map(line -> Arrays.stream(line).filter(board::isEmpty).findAny().getAsInt())
                 .orElseGet(board::getRandomFree);
     }

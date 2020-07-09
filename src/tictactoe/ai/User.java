@@ -28,6 +28,8 @@ public class User extends Ai {
                 System.out.println("This cell is occupied! Choose another one!");
             } catch (InputMismatchException e) {
                 System.out.println("You should enter numbers!");
+            } catch (IndexOutOfBoundsException e) {
+                System.out.println(e.getMessage());
             }
         }
     }

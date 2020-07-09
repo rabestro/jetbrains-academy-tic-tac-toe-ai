@@ -23,10 +23,10 @@ public class Hard extends Ai {
 
     private int minimax(int level, boolean isMax) {
         final var scores = new HashMap<Integer, Integer>();
-        for (var index : board.getFreeCells()) {
+        for (final var index : board.getFreeCells()) {
             board.set(index, isMax ? Mark.X : Mark.O);
-            int score;
-            switch (board.getState()) {
+            final int score;
+            switch (board.getGameState()) {
                 case X_WINS:
                     score = 10 - level;
                     break;
@@ -50,8 +50,8 @@ public class Hard extends Ai {
 
         if (level == 0) {
             log.fine(scores::toString);
-            var cells = scores.keySet().stream()
-                    .filter(key -> scores.get(key) == target)
+            final var cells = scores.keySet().stream()
+                    .filter(key -> scores.get(key).equals(target))
                     .collect(Collectors.toList());
             return cells.get(random.nextInt(cells.size()));
         }
