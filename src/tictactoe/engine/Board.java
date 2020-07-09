@@ -19,7 +19,7 @@ public final class Board {
 
     public static int getIndex(final int x, final int y) {
         if (x < 1 || x > 3 || y < 1 || y > 3) {
-            throw new IndexOutOfBoundsException();
+            throw new IndexOutOfBoundsException("Coordinates should be from 1 to 3");
         }
         return x - 3 * y + 8;
     }
@@ -38,13 +38,6 @@ public final class Board {
 
     public boolean isEmpty(int index) {
         return board[index] == Mark.EMPTY;
-    }
-
-    public boolean isEmpty(int x, int y) {
-        if (x < 1 || x > 3 || y < 1 || y > 3) {
-            throw new IndexOutOfBoundsException();
-        }
-        return isEmpty(x - 3 * y + 8);
     }
 
     public Optional<int[]> getTwoMarkTrips(Mark mark) {

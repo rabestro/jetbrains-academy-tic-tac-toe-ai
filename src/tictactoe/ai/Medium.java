@@ -5,7 +5,7 @@ import tictactoe.engine.Mark;
 
 import java.util.Arrays;
 
-public class Medium extends Ai {
+public final class Medium extends Ai {
     public Medium(Board board, Mark mark) {
         super(board, mark);
     }

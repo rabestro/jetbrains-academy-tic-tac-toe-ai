@@ -15,26 +15,21 @@ public class User extends Ai {
 
     @Override
     public int getMove() {
-        int x, y;
-
-        do {
+        while (true) {
             System.out.print("Enter the coordinates: ");
             try {
-                x = scanner.nextInt();
-                y = scanner.nextInt();
-                if (x < 1 || x > 3 || y < 1 || y > 3) {
-                    System.out.println("Coordinates should be from 1 to 3");
-                } else if (!board.isEmpty(x, y)) {
-                    System.out.println("This cell is occupied! Choose another one!");
-                } else {
-                    break;
+                final int x = scanner.nextInt();
+                final int y = scanner.nextInt();
+                final int index = Board.getIndex(x, y);
+
+                if (board.isEmpty(index)) {
+                    return index;
                 }
+                System.out.println("This cell is occupied! Choose another one!");
             } catch (InputMismatchException e) {
                 System.out.println("You should enter numbers!");
             }
-        } while (true);
-
-        return 8 + x - 3 * y;
+        }
     }
 
 }
