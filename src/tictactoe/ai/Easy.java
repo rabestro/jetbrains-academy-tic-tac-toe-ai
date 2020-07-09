@@ -3,7 +3,7 @@ package tictactoe.ai;
 import tictactoe.engine.Mark;
 import tictactoe.engine.Board;
 
-public class Easy extends Ai {
+public final class Easy extends Ai {
 
     public Easy(Board board, Mark mark) {
         super(board, mark);

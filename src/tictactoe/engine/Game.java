@@ -21,10 +21,10 @@ public class Game {
         do {
             System.out.println(board);
             nextMove();
-        } while (board.getState() == PLAYING);
+        } while (board.getGameState() == PLAYING);
 
         System.out.println(board);
-        System.out.println(board.getState().getMessage());
+        System.out.println(board.getGameState().getMessage());
     }
 
     public void nextMove() {
