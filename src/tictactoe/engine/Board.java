@@ -10,12 +10,19 @@ import static java.lang.Math.abs;
 import static java.util.Arrays.stream;
 import static java.util.stream.IntStream.range;
 
-public class Board {
+public final class Board {
     private static final Random random = new Random();
     private static final int[][] TRIPS = {{0, 1, 2}, {3, 4, 5}, {6, 7, 8},
             {0, 4, 8}, {2, 4, 6}, {0, 3, 6}, {1, 4, 7}, {2, 5, 8}};
 
     private final Mark[] board = new Mark[9];
+
+    public static int getIndex(final int x, final int y) {
+        if (x < 1 || x > 3 || y < 1 || y > 3) {
+            throw new IndexOutOfBoundsException();
+        }
+        return x - 3 * y + 8;
+    }
 
     public Board() {
         Arrays.fill(board, Mark.EMPTY);
