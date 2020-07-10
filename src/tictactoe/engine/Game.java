@@ -27,7 +27,7 @@ public class Game {
         System.out.println(board.getGameState().getMessage());
     }
 
-    public void nextMove() {
+    private void nextMove() {
         final var player = players[currentPlayer];
         board.set(player.getMove(), player.getMark());
         currentPlayer = 1 - currentPlayer;
